@@ -1,0 +1,9 @@
+/* test-genera-css-later * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+body {
+  font-family: "Courier";
+  margin: 0;
+}
