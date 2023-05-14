@@ -37,6 +37,8 @@ body {
   height: 85px;
   background-color: rgb(65, 65, 65);
   margin: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .label {
