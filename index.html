@@ -5,11 +5,15 @@
     <link rel="stylesheet" type="text/css" href="./stylesheet.css" />
   </head>
   <body>
-    <h1>Tier List</h1>
+    <span class="headerContainer">
+      <h1>Tier List</h1>
+      <button id="addCard">➕</button>
+    </span>
     <div id="board">
       <div class="row">
         <div class="label">S</div>
-        <div class="card" id="first" draggable="true">hello card</div>
+        <div class="card" id="first" draggable="true">card 1</div>
+        <div class="card" id="second" draggable="true">card 2</div>
       </div>
       <div class="row">
         <div class="label">A</div>
@@ -30,7 +34,10 @@
         <div class="label">F</div>
       </div>
     </div>
+    <h2>Card Bank</h2>
+    <div id="bank"></div>
   </body>
   <script src="./cards.js"></script>
   <script src="./rows.js"></script>
+  <script src="./bank.js"></script>
 </html>
