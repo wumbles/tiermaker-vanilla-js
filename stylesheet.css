@@ -26,6 +26,8 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
   width: 90vw;
   height: 50vh;
   background-color: rgb(25, 25, 25);
