@@ -1,12 +1,11 @@
 const rows = document.querySelectorAll(".row");
 const colors = [
-  "green",
-  "aquamarine",
+  "LightCoral",
+  "LightSalmon",
+  "SkyBlue",
+  "LightGreen",
   "yellow",
-  "yellowgreen",
   "orange",
-  "orangered",
-  "red",
 ];
 
 const onDragOver = (event) => {
@@ -17,6 +16,14 @@ const onDrop = (event) => {
   event.preventDefault();
   const draggedCardId = event.dataTransfer.getData("id");
   const draggedCard = document.getElementById(draggedCardId);
+
+  /* Update Local Storage */
+  const cardData = {
+    imageSrc: draggedCard.querySelector("img").src,
+    row: event.target.querySelector(".label").innerText,
+  };
+
+  window.localStorage.setItem(draggedCard.id, JSON.stringify(cardData));
   event.target.appendChild(draggedCard);
   console.log("Element has been dropped.");
 };

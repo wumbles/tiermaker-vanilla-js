@@ -12,16 +12,22 @@ const addCardToBank = (event) => {
 addCard.onclick = addCardToBank;
 
 /* Card Logic */
-const createCard = () => {
+const createCard = (id, cardData) => {
   const card = document.createElement("div");
   card.classList.add("card");
   card.setAttribute("draggable", "true");
-  card.id = Date.now();
+  card.id = id || Date.now();
   card.ondragstart = onDragStart;
   card.ondragend = onDragEnd;
   card.onclick = deleteCard;
-  appendImage(card);
-
+  if (cardData && cardData.imageSrc) {
+    const image = new Image(100, 85);
+    image.src = cardData.imageSrc;
+    image.style.pointerEvents = "none";
+    card.appendChild(image);
+  } else {
+    appendImage(card);
+  }
   return card;
 };
 
@@ -42,6 +48,14 @@ const appendImage = (card) => {
       card.appendChild(image);
     };
     reader.readAsDataURL(file);
+
+    /* Save Data to Local Storage */
+    const cardData = {
+      imageSrc: image.src,
+      row: card.parentNode.querySelector(".label")?.innerText,
+    };
+    window.localStorage.setItem(card.id, JSON.stringify(cardData));
+    // JSON.stringify(cardData) => " { imageSrc: ..., row: ... }"
   };
   input.click();
 };
@@ -50,6 +64,7 @@ const deleteCard = (event) => {
   const willDelete = window.confirm("Do you want to delete this card?");
   if (willDelete) {
     event.target.remove();
+    window.localStorage.removeItem(event.target.id);
   }
 };
 
@@ -70,3 +85,22 @@ cards.forEach((card) => {
   card.ondragstart = onDragStart;
   card.ondragend = onDragEnd;
 });
+
+/* Logic Upon First Window Load */
+window.onload = () => {
+  const cardBank = document.querySelector("#bank");
+  const keys = Object.keys(window.localStorage);
+  keys.forEach((key) => {
+    const cardData = JSON.parse(window.localStorage.getItem(key));
+    const loadedCard = createCard(key, cardData);
+    const rows = document.querySelectorAll(".row");
+    const correctRow = Array.from(rows).find((row) => {
+      return row.querySelector(".label").innerText === cardData.row;
+    });
+    if (correctRow) {
+      correctRow.appendChild(loadedCard);
+    } else {
+      cardBank.appendChild(loadedCard);
+    }
+  });
+};

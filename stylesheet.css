@@ -9,12 +9,15 @@ body {
 
 .headerContainer {
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #addCard {
+  display: flex;
   background: none;
   border: none;
-  font-size: 40px;
+  font-size: 30px;
 }
 
 #board {
@@ -23,8 +26,8 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 5px;
-  width: 80vw;
-  height: 70vh;
+  width: 90vw;
+  height: 50vh;
   background-color: rgb(25, 25, 25);
 }
 
