@@ -1,18 +1,25 @@
 body {
   font-family: "Courier";
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #board {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  padding: 5px;
   width: 80vw;
   height: 70vh;
   background-color: rgb(25, 25, 25);
 }
 
 .row {
+  display: flex;
   width: 100%;
   height: 13%;
   background-color: rgb(65, 65, 65);
@@ -25,4 +32,13 @@ body {
   height: 100%;
   width: 100px;
   background-color: lawngreen;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100px;
+  background-color: white;
 }
